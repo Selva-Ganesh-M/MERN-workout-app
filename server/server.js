@@ -8,7 +8,7 @@ const workoutsRouter = require("./routes/workoutRoutes");
 server.use(express.json());
 
 server.use((req, res, next) => {
-  console.log(req.path, req.method);
+  console.log(req.method, req.path);
   next();
 });
 
