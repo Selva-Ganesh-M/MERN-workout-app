@@ -2,6 +2,7 @@ import useFormContext from "../customHooks/useFormContext";
 import { useValidatorContext } from "../customHooks/useValidatorContext";
 import useWorkoutContext from "../customHooks/useWorkoutContext";
 import { handleDelete, handleEdit } from "../utilities/functions";
+import { formatDistanceToNow } from "date-fns";
 import "./workout.scss";
 
 const Workout = ({ item }) => {
@@ -19,6 +20,11 @@ const Workout = ({ item }) => {
         <div className="data">
           <span className="label">Load:</span>
           <span className="value">{item.load}</span>
+        </div>
+        <div className="data">
+          <span className="time">
+            {formatDistanceToNow(new Date(item.createdAt), { addSuffix: true })}
+          </span>
         </div>
       </div>
       <div className="actions">
