@@ -52,6 +52,7 @@ const getSingleWorkout = async (req, res) => {
 
 const updateWorkout = async (req, res) => {
   const { id } = req.params;
+  const payload = req.body;
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw {
@@ -62,11 +63,12 @@ const updateWorkout = async (req, res) => {
     const workout = await WorkoutModel.findOneAndUpdate(
       { _id: id },
       {
-        title: "bbbb",
+        title: payload.title,
+        load: payload.load,
+        reps: payload.reps,
       },
       { new: true }
     );
-    console.log(workout);
     if (!workout) {
       throw {
         status: 400,

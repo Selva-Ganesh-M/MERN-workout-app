@@ -1,0 +1,15 @@
+.navbar {
+  background-color: white;
+  font-family: sans-serif;
+  padding: 0.4em 1em;
+  font-size: 25px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 0;
+  margin-bottom: 1em;
+  z-index: 999;
+  .title {
+    color: #764af1;
+    font-weight: 900;
+  }
+}
