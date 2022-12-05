@@ -4,6 +4,7 @@ import App from "./App";
 import { WorkoutContextProvider } from "./context/WorkoutContext";
 import { FormContextProvider } from "./context/FormContext";
 import { ValidatorContextProvider } from "./context/ValidatorContext";
+import AuthContextProvider from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 console.log("in index");
@@ -12,7 +13,9 @@ root.render(
     <WorkoutContextProvider>
       <FormContextProvider>
         <ValidatorContextProvider>
-          <App />
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
         </ValidatorContextProvider>
       </FormContextProvider>
     </WorkoutContextProvider>
