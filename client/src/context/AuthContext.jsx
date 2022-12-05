@@ -14,6 +14,7 @@ const authReducer = (state, action) => {
         user: action.payload,
       };
     case "logout":
+      console.log("logout case executed");
       return {
         user: null,
       };
@@ -24,6 +25,7 @@ const authReducer = (state, action) => {
 
 const AuthContextProvider = ({ children }) => {
   const [auth, dispatchAuth] = useReducer(authReducer, initialState);
+  console.log("initial auth.user", auth.user);
   return (
     <AuthContext.Provider value={{ auth, dispatchAuth }}>
       {children}

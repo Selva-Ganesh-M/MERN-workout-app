@@ -61,8 +61,26 @@
       text-align: center;
       color: #777;
       .link {
+        font-weight: bold;
         color: #764af1;
         text-decoration: none;
+        display: inline-block;
+        &:hover {
+          color: #764af1;
+        }
+        &::after {
+          content: "";
+          height: 2px;
+          background-color: #764af1;
+          width: 100%;
+          display: block;
+          transform: scale(0);
+          transition: 0.3s;
+        }
+        &:hover::after {
+          transform: scale(1);
+          transition: 0.3s;
+        }
       }
     }
   }
