@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import "./app.scss";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
 
 function App() {
   console.log("app re-rendered");
@@ -11,6 +13,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/signup" exact element={<Signup />} />
         </Routes>
       </div>
     </BrowserRouter>

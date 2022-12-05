@@ -1,16 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useSignup from "../customHooks/useSignup";
 import "./Signup.scss";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
+  const { signup, error, isLoading, success } = useSignup();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signup:", email, password);
-    setEmail("");
-    setPassword("");
+    await signup(email, password);
   };
   return (
     <div className="signup-component">
@@ -34,7 +34,9 @@ const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button>Signup</button>
+        <button disabled={isLoading}>Signup</button>
+        {error && <div className="err-msg">{error}</div>}
+        {success && <div className="success-msg">{success}</div>}
         <div className="login-route">
           Already an existing user? wanna{" "}
           <Link to="/Login" className="link">

@@ -24,6 +24,7 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, password);
   try {
     const user = await UserModel.signup(email, password);
     const token = jwtGenerator(user._id);
