@@ -6,8 +6,11 @@ import "./Signup.scss";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log("Signup:", email, password);
+    setEmail("");
+    setPassword("");
   };
   return (
     <div className="signup-component">
