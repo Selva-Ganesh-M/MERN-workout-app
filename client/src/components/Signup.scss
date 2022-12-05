@@ -1,0 +1,69 @@
+.signup-component {
+  height: 85vh;
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form {
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    padding: 2em;
+    // background-color: powderblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    .title {
+      color: #764af1;
+      text-align: center;
+      margin-bottom: 1em;
+      font-size: 40px;
+    }
+    .input-div {
+      font-size: 18px;
+      margin-bottom: 1em;
+    }
+    label {
+      color: #555;
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    input {
+      width: 100%;
+      padding: 0.7em;
+      font-size: 16px;
+      color: #555;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+    button {
+      cursor: pointer;
+      width: 50%;
+      margin: 0 auto;
+      font-size: 18px;
+      padding: 0.6em;
+      margin-top: 1em;
+      margin-bottom: 2em;
+      border: none;
+      background-color: #764af1;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .login-route {
+      font-size: 14px;
+      text-align: center;
+      color: #777;
+      .link {
+        color: #764af1;
+        text-decoration: none;
+      }
+    }
+  }
+}
