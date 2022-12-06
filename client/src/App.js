@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import "./app.scss";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Test from "./components/Test";
 import useAuthContext from "./customHooks/useAuthContext";
 
 function App() {

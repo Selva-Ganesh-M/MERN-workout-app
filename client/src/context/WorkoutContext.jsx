@@ -23,7 +23,7 @@ const workoutReducer = (state, action) => {
       };
     case "reset":
       return {
-        workouts: null,
+        workouts: [],
       };
     default:
       return state;

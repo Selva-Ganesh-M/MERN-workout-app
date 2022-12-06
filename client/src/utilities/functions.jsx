@@ -58,7 +58,7 @@ export const createWorkout = async ({
   }
 
   const workout = { title, load, reps };
-  const res = await fetch("http://localhost:4000/api/workouts", {
+  const res = await fetch("/api/workouts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -90,21 +90,18 @@ export const editWorkout = async ({
     return;
   }
 
-  const res = await fetch(
-    `http://localhost:4000/api/workouts/${formFields._id}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${auth.user.token}`,
-      },
-      body: JSON.stringify({
-        title: formFields.title,
-        load: formFields.load,
-        reps: formFields.reps,
-      }),
-    }
-  );
+  const res = await fetch(`/api/workouts/${formFields._id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.user.token}`,
+    },
+    body: JSON.stringify({
+      title: formFields.title,
+      load: formFields.load,
+      reps: formFields.reps,
+    }),
+  });
   const json = await res.json();
   if (res.ok) {
     dispatch({
@@ -149,7 +146,7 @@ export const handleDelete = async (item, dispatch, dispatchV, auth) => {
   if (!checkAuth(auth, dispatchV)) {
     return;
   }
-  const res = await fetch(`http://localhost:4000/api/workouts/${item._id}`, {
+  const res = await fetch(`/api/workouts/${item._id}`, {
     method: "DELETE",
     headers: {
       "Context-Type": "application/json",

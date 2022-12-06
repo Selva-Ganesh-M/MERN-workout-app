@@ -13,6 +13,11 @@ const Form = () => {
   return (
     <div className="form-div">
       <form className="form">
+        {formFields.edit ? (
+          <div className="header">Update Workout</div>
+        ) : (
+          <div className="header">Create Workout</div>
+        )}
         <div className="field">
           <label htmlFor="title">Title</label>
           <input
@@ -27,11 +32,13 @@ const Form = () => {
             }
             type="text"
             id="title"
-            placeholder="enter the title here"
+            placeholder="enter the title here..."
           />
         </div>
         <div className="field">
-          <label htmlFor="load">Load</label>
+          <label htmlFor="load">
+            Load <span className="weight">(in kg)</span>
+          </label>
           <input
             className={validators.suggestions.includes("load") ? "error" : ""}
             value={formFields.load}
@@ -44,7 +51,7 @@ const Form = () => {
             }
             type="number"
             id="load"
-            placeholder="enter the title here"
+            placeholder="enter the load here..."
           />
         </div>
         <div className="field">
@@ -61,7 +68,7 @@ const Form = () => {
             }
             type="number"
             id="reps"
-            placeholder="enter the title here"
+            placeholder="enter no of reps here..."
           />
         </div>
         {validators.error && <div className="err-msg">{validators.error}</div>}

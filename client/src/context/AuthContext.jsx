@@ -14,7 +14,6 @@ const authReducer = (state, action) => {
         user: action.payload,
       };
     case "logout":
-      console.log("logout case executed");
       return {
         user: null,
       };

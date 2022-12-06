@@ -7,7 +7,6 @@ import { ValidatorContextProvider } from "./context/ValidatorContext";
 import AuthContextProvider from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-console.log("in index");
 root.render(
   <React.StrictMode>
     <WorkoutContextProvider>

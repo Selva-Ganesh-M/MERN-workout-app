@@ -1,24 +1,24 @@
 import React from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuthContext from "../customHooks/useAuthContext";
 import useLogin from "../customHooks/useLogin";
+import { useValidatorContext } from "../customHooks/useValidatorContext";
 import "./Login.scss";
 
 const Login = () => {
+  const { validators, dispatchV } = useValidatorContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const { login, error, isLoading, success } = useLogin();
   const { auth } = useAuthContext();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, dispatchV) => {
     e.preventDefault();
-    setEmail("");
-    setPassword("");
     if (!auth.user) {
       await login(email, password);
-      navigate("/");
+      setEmail("");
+      setPassword("");
     }
   };
   return (

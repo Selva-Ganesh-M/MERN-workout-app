@@ -6,7 +6,6 @@ const useLogout = () => {
   const { workouts, dispatch } = useWorkoutContext();
   const navigate = useNavigate();
   const { auth, dispatchAuth } = useAuthContext();
-  console.log("typeof", typeof auth);
   const logout = () => {
     localStorage.removeItem("user");
     dispatchAuth({ type: "logout" });

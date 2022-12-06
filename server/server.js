@@ -7,7 +7,7 @@ const server = express();
 const workoutsRouter = require("./routes/workoutRoutes");
 const userRouter = require("./routes/userRoutes");
 
-server.use(cors());
+// server.use(cors());
 server.use(express.json());
 
 server.use((req, res, next) => {

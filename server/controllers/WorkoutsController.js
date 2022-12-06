@@ -3,10 +3,9 @@ const WorkoutModel = require("../models/WorkoutModel");
 
 const getAllWorkouts = async (req, res) => {
   try {
-    const workouts = await WorkoutModel.find({}).sort({ createdAt: -1 });
-    // if (workouts.length === 0) {
-    //   throw { name: "error", message: "No workouts found", status: "404" };
-    // }
+    const workouts = await WorkoutModel.find({ createdBy: req.user._id }).sort({
+      createdAt: -1,
+    });
     res.status(200).json(workouts);
   } catch (error) {
     res.status(400).json(error);
@@ -14,12 +13,17 @@ const getAllWorkouts = async (req, res) => {
 };
 
 const createWorkout = async (req, res) => {
+  const { _id } = req.user;
   const { title, reps, load } = req.body;
   try {
+    if (!_id) {
+      throw Error({ message: "id not found", loc: "createWorkout-Server" });
+    }
     const workout = await WorkoutModel.create({
       title,
       reps,
       load,
+      createdBy: _id,
     });
     workout.save();
     res.status(200).json(workout);

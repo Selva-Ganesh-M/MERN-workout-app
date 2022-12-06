@@ -10,7 +10,7 @@ const useLogin = () => {
     setIsLoading(true);
     setSuccess("");
     setError("");
-    const res = await fetch("http://localhost:4000/api/user/login", {
+    const res = await fetch("/api/user/login", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -26,12 +26,11 @@ const useLogin = () => {
       return;
     }
     localStorage.setItem("user", JSON.stringify(json));
-    dispatchAuth({ type: "login", payload: json });
-
-    setSuccess("Signup successful");
+    setSuccess("Login successful");
     setTimeout(() => {
       setSuccess("");
-    }, 1000);
+      dispatchAuth({ type: "login", payload: json });
+    }, 500);
 
     setIsLoading(false);
   };

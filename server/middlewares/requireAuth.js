@@ -19,9 +19,9 @@ const requireAuth = async (req, res, next) => {
       });
     }
     req.user = user;
+
     return next();
   } catch (e) {
-    console.log(e);
     res.status(401).json(e);
   }
 };

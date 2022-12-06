@@ -9,7 +9,7 @@ const List = () => {
   const { auth } = useAuthContext();
   useEffect(() => {
     const getWorkouts = async () => {
-      const res = await fetch("http://localhost:4000/api/workouts", {
+      const res = await fetch("api/workouts", {
         headers: {
           Authorization: `Bearer ${auth.user.token}`,
         },
