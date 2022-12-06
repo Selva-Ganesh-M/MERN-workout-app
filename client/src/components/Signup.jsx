@@ -45,8 +45,8 @@ const Signup = () => {
         {error && <div className="err-msg">{error}</div>}
         {success && <div className="success-msg">{success}</div>}
         <div className="login-route">
-          Already an existing user? wanna{" "}
-          <Link to="/Login" className="link">
+          Already an existing user? want to{" "}
+          <Link to="/login" className="link">
             Login?
           </Link>
         </div>

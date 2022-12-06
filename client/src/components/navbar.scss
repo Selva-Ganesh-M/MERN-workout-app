@@ -21,10 +21,14 @@
       align-items: center;
       .login,
       .signup {
+        // border: 2px solid #764af1;
+        border: none;
+        padding: 0.6em;
         text-decoration: none;
         margin-right: 2em;
         color: #555;
         font-size: 16px;
+
         span {
           &::after {
             content: "";
@@ -71,6 +75,24 @@
           border-color: #764af1;
           color: white;
           transition: all 0.2s;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    .title {
+      text-align: center;
+    }
+    .nav {
+      .sec-1 {
+        // display: none;
+      }
+      .sec-2 {
+        .email-id {
+          display: none;
         }
       }
     }

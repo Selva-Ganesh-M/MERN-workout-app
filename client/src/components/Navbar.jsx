@@ -1,12 +1,12 @@
 import React from "react";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useLogout from "../customHooks/useLogout";
 import useAuthContext from "../customHooks/useAuthContext";
-import { useEffect } from "react";
 
 const Navbar = () => {
-  const { auth, dispatchAuth } = useAuthContext();
+  const { auth } = useAuthContext();
+  const location = useLocation();
   const logout = useLogout();
   const handleSignout = async () => {
     logout();
@@ -35,12 +35,20 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="sec-1">
-            <Link to="/login" className="login">
-              <span>Login</span>
-            </Link>
-            <Link to="/signup" className="signup">
-              <span>Signup</span>
-            </Link>
+            {location.pathname === "/signup" ? (
+              <Link to="/login" className="login">
+                <span>Login</span>
+              </Link>
+            ) : (
+              <></>
+            )}
+            {location.pathname === "/login" ? (
+              <Link to="/signup" className="signup">
+                <span>Signup</span>
+              </Link>
+            ) : (
+              <></>
+            )}
           </div>
         )}
       </nav>

@@ -10,10 +10,10 @@ const userRouter = require("./routes/userRoutes");
 // server.use(cors());
 server.use(express.json());
 
-server.use((req, res, next) => {
-  console.log(req.method, req.path);
-  next();
-});
+// server.use((req, res, next) => {
+//   console.log(req.method, req.path);
+//   next();
+// });
 
 server.use("/api/workouts", workoutsRouter);
 server.use("/api/user", userRouter);

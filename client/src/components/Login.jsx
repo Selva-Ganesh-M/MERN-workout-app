@@ -3,11 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuthContext from "../customHooks/useAuthContext";
 import useLogin from "../customHooks/useLogin";
-import { useValidatorContext } from "../customHooks/useValidatorContext";
 import "./Login.scss";
 
 const Login = () => {
-  const { validators, dispatchV } = useValidatorContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading, success } = useLogin();
@@ -47,8 +45,8 @@ const Login = () => {
         {error && <div className="err-msg">{error}</div>}
         {success && <div className="success-msg">{success}</div>}
         <div className="signup-route">
-          Not an existing user? wanna{" "}
-          <Link to="/Signup" className="link">
+          Not an existing user? want to{" "}
+          <Link to="/signup" className="link">
             signup?
           </Link>
         </div>

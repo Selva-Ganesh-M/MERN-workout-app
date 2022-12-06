@@ -75,40 +75,34 @@ const Form = () => {
         {validators.success && (
           <div className="success-msg">{validators.success}</div>
         )}
-        <button
-          style={{ cursor: "pointer" }}
-          type="button"
-          onClick={(e) => {
-            handleFormSubmission({
-              auth,
-              dispatchV,
-              formFields,
-              dispatchFF,
-              workouts,
-              dispatch,
-            });
-          }}
-          className="btn"
-        >
-          {formFields.edit ? <>Update</> : <>Create</>}
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            dispatchFF({ type: "reset" });
-            dispatchV({ type: "reset" });
-          }}
-          style={{
-            cursor: "pointer",
-            marginLeft: "1em",
-            backgroundColor: "white",
-            border: "1px solid purple",
-            color: "purple",
-          }}
-          className="btn"
-        >
-          RESET
-        </button>
+        <div className="btn-div">
+          <button
+            type="button"
+            onClick={(e) => {
+              handleFormSubmission({
+                auth,
+                dispatchV,
+                formFields,
+                dispatchFF,
+                workouts,
+                dispatch,
+              });
+            }}
+            className="btn do"
+          >
+            {formFields.edit ? <>Update</> : <>Create</>}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              dispatchFF({ type: "reset" });
+              dispatchV({ type: "reset" });
+            }}
+            className="btn reset"
+          >
+            RESET
+          </button>
+        </div>
       </form>
     </div>
   );

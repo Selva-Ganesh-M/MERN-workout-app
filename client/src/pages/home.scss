@@ -3,6 +3,7 @@
   display: flex;
   padding: 1em;
   .list-div {
+    // min-width: 550px;
     height: 80vh;
     overflow: auto;
     &::-webkit-scrollbar {
@@ -14,6 +15,24 @@
     margin-left: 1em;
     ul {
       list-style: none;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .home {
+    flex-direction: column;
+    .form-div {
+      width: 80%;
+      order: 1;
+      margin: 0 auto;
+      margin-bottom: 2em;
+      position: static;
+    }
+    .list-div {
+      order: 2;
+      // max-height: 300px;
+      // background-color: red;
     }
   }
 }

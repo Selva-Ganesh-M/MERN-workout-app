@@ -69,7 +69,7 @@ export const createWorkout = async ({
   const json = await res.json();
   if (res.ok) {
     dispatch({ type: "create", payload: json });
-    dispatchFF({ type: "reset" });
+    // dispatchFF({ type: "reset" });
     dispatchV({ type: "success", payload: "Workout created successfully" });
     setTimeout(() => dispatchV({ type: "reset" }), 1000);
   }
@@ -118,6 +118,7 @@ export const editWorkout = async ({
             reps: json.reps,
           };
         }
+        return null;
       }),
     });
     dispatchFF({ type: "reset" });

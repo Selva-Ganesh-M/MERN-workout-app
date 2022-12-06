@@ -7,11 +7,10 @@ import Login from "./components/Login";
 import useAuthContext from "./customHooks/useAuthContext";
 
 function App() {
-  console.log("app re-rendered");
   const { auth } = useAuthContext();
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="app">
         <Navbar />
         <Routes>
           <Route
