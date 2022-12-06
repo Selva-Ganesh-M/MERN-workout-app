@@ -1,16 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuthContext from "../customHooks/useAuthContext";
 import useSignup from "../customHooks/useSignup";
+import { useNavigate } from "react-router-dom";
 import "./Signup.scss";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { auth } = useAuthContext();
   const { signup, error, isLoading, success } = useSignup();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(email, password);
+    if (!auth.user) {
+      await signup(email, password);
+      navigate("/");
+    }
   };
   return (
     <div className="signup-component">

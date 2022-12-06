@@ -4,9 +4,9 @@ const WorkoutModel = require("../models/WorkoutModel");
 const getAllWorkouts = async (req, res) => {
   try {
     const workouts = await WorkoutModel.find({}).sort({ createdAt: -1 });
-    if (workouts.length === 0) {
-      throw { name: "error", message: "No workouts found", status: "404" };
-    }
+    // if (workouts.length === 0) {
+    //   throw { name: "error", message: "No workouts found", status: "404" };
+    // }
     res.status(200).json(workouts);
   } catch (error) {
     res.status(400).json(error);

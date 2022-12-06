@@ -4,11 +4,13 @@ import useWorkoutContext from "../customHooks/useWorkoutContext";
 import { handleDelete, handleEdit } from "../utilities/functions";
 import { formatDistanceToNow } from "date-fns";
 import "./workout.scss";
+import useAuthContext from "../customHooks/useAuthContext";
 
 const Workout = ({ item }) => {
   const { dispatchV } = useValidatorContext();
   const { dispatch } = useWorkoutContext();
   const { dispatchFF } = useFormContext();
+  const { auth } = useAuthContext();
   return (
     <div className="workout">
       <div className="content">
@@ -29,11 +31,11 @@ const Workout = ({ item }) => {
       </div>
       <div className="actions">
         <i
-          onClick={() => handleEdit(item, dispatchV, dispatchFF)}
+          onClick={() => handleEdit(item, dispatchV, dispatchFF, auth)}
           className="fa purple fa-edit fa-2x"
         ></i>
         <i
-          onClick={() => handleDelete(item, dispatch)}
+          onClick={() => handleDelete(item, dispatch, dispatchV, auth)}
           className="fa red fa-trash fa-2x"
         ></i>
       </div>

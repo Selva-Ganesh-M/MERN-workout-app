@@ -3,11 +3,13 @@ import useFormContext from "../customHooks/useFormContext";
 import { handleFormSubmission } from "../utilities/functions";
 import useWorkoutContext from "../customHooks/useWorkoutContext";
 import { useValidatorContext } from "../customHooks/useValidatorContext";
+import useAuthContext from "../customHooks/useAuthContext";
 
 const Form = () => {
   const { validators, dispatchV } = useValidatorContext();
   const { formFields, dispatchFF } = useFormContext();
   const { workouts, dispatch } = useWorkoutContext();
+  const { auth } = useAuthContext();
   return (
     <div className="form-div">
       <form className="form">
@@ -71,6 +73,7 @@ const Form = () => {
           type="button"
           onClick={(e) => {
             handleFormSubmission({
+              auth,
               dispatchV,
               formFields,
               dispatchFF,

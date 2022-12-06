@@ -21,6 +21,10 @@ const workoutReducer = (state, action) => {
       return {
         workouts: state.workouts.filter((item) => item._id !== action.payload),
       };
+    case "reset":
+      return {
+        workouts: null,
+      };
     default:
       return state;
   }

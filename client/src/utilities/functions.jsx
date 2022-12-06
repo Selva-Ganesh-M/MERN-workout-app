@@ -1,4 +1,23 @@
-// Form Component Functions
+// Form Component Functions ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// check for authorization
+
+const checkAuth = (auth, dispatchV) => {
+  if (auth.user) {
+    return true;
+  }
+  dispatchV({
+    type: "error",
+    payload: {
+      error: "must login to create/edit",
+      suggestions: [],
+    },
+  });
+  setTimeout(() => dispatchV({ type: "reset" }), 1000);
+  return false;
+};
+
+// valid id checker
 
 const isValidCreateOrEditRequest = ({ title, load, reps, dispatchV }) => {
   const temp = [title, load, reps].filter((field) => field);
@@ -24,11 +43,14 @@ const isValidCreateOrEditRequest = ({ title, load, reps, dispatchV }) => {
   }
 };
 
+// workout creator ''''''''''''''''''''''
+
 export const createWorkout = async ({
   formFields,
   dispatchFF,
   dispatch,
   dispatchV,
+  auth,
 }) => {
   const { title, load, reps } = formFields;
   if (!isValidCreateOrEditRequest({ title, load, reps, dispatchV })) {
@@ -40,6 +62,7 @@ export const createWorkout = async ({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.user.token}`,
     },
     body: JSON.stringify(workout),
   });
@@ -52,7 +75,10 @@ export const createWorkout = async ({
   }
 };
 
+// workout editor ''''''''''''''''''
+
 export const editWorkout = async ({
+  auth,
   dispatchV,
   formFields,
   dispatchFF,
@@ -70,6 +96,7 @@ export const editWorkout = async ({
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.user.token}`,
       },
       body: JSON.stringify({
         title: formFields.title,
@@ -102,8 +129,13 @@ export const editWorkout = async ({
   }
 };
 
+// form main submit handler
+
 export const handleFormSubmission = (props) => {
-  const { formFields } = props;
+  const { formFields, auth, dispatchV } = props;
+  if (!checkAuth(auth, dispatchV)) {
+    return;
+  }
   if (!formFields.edit) {
     createWorkout(props);
   } else {
@@ -111,13 +143,17 @@ export const handleFormSubmission = (props) => {
   }
 };
 
-// workout component functions
+// workout component functions  ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-export const handleDelete = async (item, dispatch) => {
+export const handleDelete = async (item, dispatch, dispatchV, auth) => {
+  if (!checkAuth(auth, dispatchV)) {
+    return;
+  }
   const res = await fetch(`http://localhost:4000/api/workouts/${item._id}`, {
     method: "DELETE",
     headers: {
       "Context-Type": "application/json",
+      Authorization: `Bearer ${auth.user.token}`,
     },
   });
   if (res.ok) {
@@ -128,7 +164,10 @@ export const handleDelete = async (item, dispatch) => {
   }
 };
 
-export const handleEdit = async (item, dispatchV, dispatchFF) => {
+export const handleEdit = async (item, dispatchV, dispatchFF, auth) => {
+  if (!checkAuth(auth, dispatchV)) {
+    return;
+  }
   await dispatchFF({
     type: "edit",
     payload: {

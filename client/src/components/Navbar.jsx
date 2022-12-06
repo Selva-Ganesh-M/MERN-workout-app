@@ -13,7 +13,14 @@ const Navbar = () => {
   };
   return (
     <div className="navbar">
-      <h1 className="title">Workouts</h1>
+      <Link
+        style={{
+          textDecoration: "none",
+        }}
+        to="/"
+      >
+        <h1 className="title">Workouts</h1>
+      </Link>
 
       <nav className="nav">
         {auth.user ? (
